@@ -1,0 +1,24 @@
+--- #You can define variables in ansible yaml scripts
+
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+  vars:
+    packagename: httpd
+    index_path: /var/www/html/
+
+  tasks:
+    - name: remove httpd if there
+      action: yum pkg="{{packagename}}" state=absent
+
+    - name: install httpd
+      action: yum pkg="{{packagename}}" state=present
+
+    - name: start apache2
+      action: service name="{{packagename}}" state=started
+
+    - name: deploy index
+      action: copy src=index.html dest="{{index_path}}" 

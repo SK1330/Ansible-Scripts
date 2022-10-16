@@ -1,0 +1,15 @@
+--- #hosts and tasks
+
+- hosts: devserver
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+
+  tasks:
+    - name: install tree
+      action: yum pkg=tree state=installed
+
+    - name: remove tree
+      action: yum pkg=tree state=removed

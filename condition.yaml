@@ -1,0 +1,15 @@
+--- #You can add condition to perform tasks
+
+# It will skipped the tasks if the condition doesnt follows
+
+- hosts: all
+  user: ansible
+  become: yes
+
+  vars:
+    value: 10
+
+  tasks:
+    - name: remove tree
+      command: yum remove tree -y
+      when: value==5

@@ -1,0 +1,21 @@
+--- #this is multi hosts playbook
+
+- hosts: devserver
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+  tasks:
+    - name: install git
+      action: yum pkg=git state=present
+
+- hosts: prodserver
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+  tasks:
+    - name: install tree
+      action: yum pkg=tree state=present

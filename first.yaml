@@ -1,0 +1,10 @@
+--- #my first yaml file for play book
+
+#Single hosts
+
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+

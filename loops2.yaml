@@ -1,0 +1,30 @@
+--- #you can use loop to install application and running similiar processs
+#see the below exaample
+
+
+- hosts: devserver
+  user: ansible
+  connection: ssh
+  become: yes
+
+
+  # you can create multiple user using ansible yaml file using loop
+  #
+  #
+  #  tasks:
+  # - name: create user task
+  #   user: name="{{item}}" state=present
+  #   loop:
+  #     - "saurabh"
+  #     - "shantanu"
+  #     - "om"
+
+
+  tasks:
+    - name: insatll multiple packages
+      action: yum pkg="{{item}}" state=present
+      loop:
+        - "tree"
+        - "git"
+        - "httpd"
+

@@ -1,0 +1,19 @@
+--- #here we are performing multiple tasks  intsall start deploy index.html
+
+
+- hosts: devserver, prodserver
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+
+  tasks:
+    - name: install apache2 in all hosts
+      action: yum pkg=httpd state=installed
+
+    - name: start apache2 service
+      action: service name=httpd state=started
+
+    - name: deploying index.html
+      action: copy src=index.html dest=/var/www/html/

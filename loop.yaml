@@ -1,0 +1,14 @@
+--- #loop 
+
+- hosts: devserver
+  user: ansible
+  connection: ssh
+  become: yes
+
+  tasks:
+    - name: print task
+      command: echo "{{item}}"
+      loop:
+        - "one"
+        - "two"
+        - "three"
